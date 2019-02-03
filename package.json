@@ -1,0 +1,12 @@
+{
+  "name": "CanNotChoose",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dantegr/cannotchoose.git",
+  "author": "Pantelis <tampantelis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
