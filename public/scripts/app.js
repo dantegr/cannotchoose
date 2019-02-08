@@ -1,36 +1,86 @@
-/* function square(x) {
-  return x * x;
+'use strict';
+
+console.log('app.js is running');
+
+var app = {
+  title: 'CanNotChoose',
+  subtitle: 'Let your computer choose for you!',
+  options: []
 };
 
-console.log(square(3));
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
 
-//const squareArrow = (x) => {
-  //return x * x;
-//};
+  var option = e.target.elements.option.value;
 
-const squareArrow = (x) => x * x;
-
-
-console.log(squareArrow(4));
-
-const getFirstname1 = (name) => {
-  if (name) {
-    firstName = name.split(' ')[0];
-    return firstName;
-  } else {
-    return undefined;
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
   }
+  renderApp();
 };
 
-const getFirstname2 = (name) => name.split(' ')[0]; */
-
-const multiplier = {
-  numbers: [10, 20, 30],
-  multiplyBy: 3,
-  multiply() {
-    return this.numbers.map(number => this.multiplyBy * number);
-  }
-
+var resetAll = function resetAll() {
+  app.options = [];
+  renderApp();
 };
 
-console.log(multiplier.multiply());
+var numbers = [55, 101, 1000];
+
+var renderApp = function renderApp() {
+  var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      'p',
+      null,
+      app.subtitle
+    ),
+    React.createElement(
+      'p',
+      null,
+      app.options.length > 0 ? 'Here are your options' : 'No Options'
+    ),
+    React.createElement(
+      'p',
+      null,
+      app.options.length
+    ),
+    React.createElement(
+      'button',
+      { onClick: resetAll },
+      'Remove all'
+    ),
+    React.createElement(
+      'ol',
+      null,
+      app.options.map(function (option) {
+        return React.createElement(
+          'li',
+          { key: option },
+          'Option: ',
+          option
+        );
+      })
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
+    )
+  );
+
+  ReactDOM.render(template, appRoot);
+};
+var appRoot = document.getElementById('app');
+renderApp();
