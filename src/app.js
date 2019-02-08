@@ -23,7 +23,12 @@ const resetAll = () => {
   renderApp();
 };
 
-const numbers = [55, 101, 1000];
+const makeDecision = () => {
+  const ranndomNumber = Math.floor(Math.random() * app.options.length);
+  const option = app.options[ranndomNumber];
+  alert(option);
+
+};
 
 
 const renderApp = () => {
@@ -32,9 +37,8 @@ const template = (
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
     <p>{app.options.length > 0 ? 'Here are your options' : 'No Options'}</p>
-    <p>{app.options.length}</p>
+    <button disabled={app.options.length === 0} onClick={makeDecision}>Let me choose!</button>
     <button onClick={resetAll}>Remove all</button>
-
     <ol>
     {
       app.options.map((option) => {

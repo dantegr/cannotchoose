@@ -25,7 +25,11 @@ var resetAll = function resetAll() {
   renderApp();
 };
 
-var numbers = [55, 101, 1000];
+var makeDecision = function makeDecision() {
+  var ranndomNumber = Math.floor(Math.random() * app.options.length);
+  var option = app.options[ranndomNumber];
+  alert(option);
+};
 
 var renderApp = function renderApp() {
   var template = React.createElement(
@@ -47,9 +51,9 @@ var renderApp = function renderApp() {
       app.options.length > 0 ? 'Here are your options' : 'No Options'
     ),
     React.createElement(
-      'p',
-      null,
-      app.options.length
+      'button',
+      { disabled: app.options.length === 0, onClick: makeDecision },
+      'Let me choose!'
     ),
     React.createElement(
       'button',
