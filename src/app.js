@@ -1,10 +1,14 @@
 class CanNotChooseApp extends React.Component {
   render(){
+    const title = 'Can Not Choose App';
+    const subtitle = 'Let your computer choose for you!!';
+    const options = ['Thing one' ,'Thing two', 'Thing three'];
+
     return (
       <div>
-        <Header />
+        <Header title={title} subtitle={subtitle}/>
         <Action />
-        <Options />
+        <Options options={options}/>
         <AddOption />
       </div>
     )
@@ -14,10 +18,11 @@ class CanNotChooseApp extends React.Component {
 
 class Header extends React.Component {
   render() {
+    
     return (
       <div>
-        <h1>Can Not Choose</h1>
-        <h2>Let your computer choose for you!!</h2>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
       </div>
     );
   }
@@ -39,7 +44,13 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        <Option />
+        <ol>
+        {
+          this.props.options.map((option) => <Option key={option} optionText={option} />)
+        }
+        </ol>
+
+        
       </div>
     );
   }
@@ -49,10 +60,7 @@ class Option extends React.Component {
   render() {
     return (
       <div>
-        <ol>
-          <li>Option A</li>
-          <li>Option B</li>
-        </ol>
+        <li>{this.props.optionText}</li>
       </div>
     );
   }
