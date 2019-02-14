@@ -40,11 +40,7 @@ class VisibilityTogle extends React.Component {
         };
       }
     });
-  
-
   }
-
-
 }
 
 
