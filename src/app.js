@@ -5,7 +5,7 @@ class CanNotChooseApp extends React.Component {
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: []
+      options: props.options
     };
   }
   
@@ -36,13 +36,12 @@ class CanNotChooseApp extends React.Component {
     });
   }
   render(){
-    const title = 'Can Not Choose App';
     const subtitle = 'Let your computer choose for you!!';
    
 
     return (
       <div>
-        <Header title={title} subtitle={subtitle}/>
+        <Header  subtitle={subtitle}/>
         <Action 
           hasOptions={this.state.options.length > 0}
           handlePick={this.handlePick}
@@ -58,27 +57,24 @@ class CanNotChooseApp extends React.Component {
     )
   }
 }
+
+CanNotChooseApp.defaultProps = {
+  options: []
+};
+
 const Header = (props) => {
   return (
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      {props.subtitle && <h2>{props.subtitle}</h2>} 
     </div>
   );
 };
 
-// class Header extends React.Component {
-//   render() {
-    
-//     return (
-//       <div>
-//         <h1>{this.props.title}</h1>
-//         <h2>{this.props.subtitle}</h2>
-//       </div>
-//     );
-//   }
+Header.defaultProps = {
+  title: 'Can Not Choose App'
+};
 
-// }
 
 const Action = (props) => {
   
@@ -94,20 +90,6 @@ const Action = (props) => {
   
 };
 
-// class Action extends React.Component {
-
-//   render(){
-//     return (
-//       <div>
-//         <button onClick={this.props.handlePick}
-//         disabled={!this.props.hasOptions}
-//         >
-//         Will you choose for me?</button>
-//       </div>
-
-//     );
-//   }
-// }
 
 const Options = (props) => {
   return (
@@ -122,21 +104,6 @@ const Options = (props) => {
   );
 };
 
-// class Options extends React.Component {
-
-//   render() {
-//     return (
-//       <div>
-//       <button onClick={this.props.handleDeleteOptions}>Remove All</button>
-//         <ol>
-//         {
-//           this.props.options.map((option) => <Option key={option} optionText={option} />)
-//         }
-//         </ol>       
-//       </div>
-//     );
-//   }
-// }
 
 const Option = (props) => {
   return (
@@ -147,15 +114,6 @@ const Option = (props) => {
 };
 
 
-// class Option extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <li>{this.props.optionText}</li>
-//       </div>
-//     );
-//   }
-// }
 
 class AddOption extends React.Component {
   constructor(props) {
@@ -189,13 +147,5 @@ class AddOption extends React.Component {
   }
 }
 
-// const User = (props) => {
-//   return (
-//     <div>
-//       <p>Name: {props.name}</p>
-//       <p>Age: {props.age}</p>
-//     </div>
-//   )
-// };
 
-ReactDOM.render(<CanNotChooseApp/>, document.getElementById('app'));
+ReactDOM.render(<CanNotChooseApp options={['1','2']}/>, document.getElementById('app'));
