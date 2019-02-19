@@ -86,6 +86,7 @@ class CanNotChooseApp extends React.Component {
 }
 
 
+
 CanNotChooseApp.defaultProps = {
   options: []
 };
