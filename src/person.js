@@ -14,3 +14,13 @@ export const canDrink = (x) => {
     return false;
   }
 };
+
+const isSenior = (x) => {
+  if (x >= 65) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export default isSenior;
