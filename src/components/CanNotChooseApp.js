@@ -3,20 +3,26 @@ import AddOption from './AddOption';
 import Action from './Action';
 import Header from './Header';
 import Options from './Options';
+import OptionModal from './OptionModal';
 
 export default class CanNotChooseApp extends React.Component {
   state ={
-    options: []
+    options: [],
+    selectedOption: undefined
   };
 
   handlePick = () => {
     const ranndomNumber = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[ranndomNumber];
-    alert(option);
+    this.setState(()=> ({ selectedOption: option}));
   }
 
   handleDeleteOptions = () => {
     this.setState(() => ({options: [] }));
+  }
+
+  handleDeleteSelectedOption = () => {
+    this.setState(() => ({selectedOption: undefined }));
   }
 
   handleAddOption = (option) => {
@@ -79,6 +85,10 @@ export default class CanNotChooseApp extends React.Component {
         />
         <AddOption 
           handleAddOption={this.handleAddOption}
+        />
+        <OptionModal 
+          selectedOption={this.state.selectedOption}
+          handleDeleteSelectedOption={this.handleDeleteSelectedOption}
         />
       </div>
     )
