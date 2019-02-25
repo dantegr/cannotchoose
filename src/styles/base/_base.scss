@@ -8,3 +8,10 @@ body {
   background-color: $dark-blue;
 }
 
+button {
+  cursor:pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
